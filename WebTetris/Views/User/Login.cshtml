@@ -1,66 +1,65 @@
 @model WebTetris.Models.User.LoginModel
+<form asp-controller="User" asp-action="Login" asp-antiforgery="true" method="post">
+    <div class="login-container">
+        <div class="card login-card shadow-lg">
+            <div class="card-header bg-primary text-white text-center py-3">
+                <h4 class="mb-0"><i class="fas fa-sign-in-alt me-2"></i>Login to System</h4>
+            </div>
 
-<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+            <div class="card-body p-4">
+                <form asp-controller="User" asp-action="Login" asp-antiforgery="true" method="post" class="needs-validation" novalidate>
 
-<div class="login-container">
-    <div class="card login-card shadow-lg">
-        <div class="card-header bg-primary text-white text-center py-3">
-            <h4 class="mb-0"><i class="fas fa-sign-in-alt me-2"></i>Login to System</h4>
-        </div>
-
-        <div class="card-body p-4">
-            <form asp-controller="User" asp-action="Login" asp-antiforgery="true" method="post" class="needs-validation" novalidate>
-
-                <div class="form-group mb-3">
-                    <label asp-for="Login" class="form-label fw-bold text-dark">Username</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-light border-end-0">
-                                <i class="fas fa-user text-primary"></i>
-                            </span>
+                    <div class="form-group mb-3">
+                        <label asp-for="Login" class="form-label fw-bold text-dark">Username</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-user text-primary"></i>
+                                </span>
+                            </div>
+                            <input asp-for="Login" type="text" class="form-control border-start-0" placeholder="Enter your username">
                         </div>
-                        <input asp-for="Login" type="text" class="form-control border-start-0" placeholder="Enter your username">
+                        <span asp-validation-for="Login" class="text-danger"></span>
                     </div>
-                    <span asp-validation-for="Login" class="text-danger"></span>
-                </div>
 
-                <div class="form-group mb-3">
-                    <label asp-for="Password" class="form-label fw-bold text-dark">Password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-light border-end-0">
-                                <i class="fas fa-lock text-primary"></i>
-                            </span>
+                    <div class="form-group mb-3">
+                        <label asp-for="Password" class="form-label fw-bold text-dark">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-lock text-primary"></i>
+                                </span>
+                            </div>
+                            <input asp-for="Password" type="password" class="form-control border-start-0" placeholder="Enter your password" id="passwordField">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="fas fa-eye" id="passwordIcon"></i>
+                                    <span class="password-toggle-text" id="passwordText">Show</span>
+                                </button>
+                            </div>
                         </div>
-                        <input asp-for="Password" type="password" class="form-control border-start-0" placeholder="Enter your password" id="passwordField">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                                <i class="fas fa-eye" id="passwordIcon"></i>
-                                <span class="password-toggle-text" id="passwordText">Show</span>
-                            </button>
-                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
 
-                <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-primary btn-block w-100 py-2 fw-bold">
-                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
-                    </button>
-                </div>
+                    <div class="form-group mb-3">
+                        <button type="submit" class="btn btn-primary btn-block w-100 py-2 fw-bold">
+                            <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                        </button>
+                    </div>
 
-                <div class="text-center mb-3">
-                    <hr class="divider">
-                    <span class="px-3 bg-white text-muted">or</span>
-                </div>
+                    <div class="text-center mb-3">
+                        <hr class="divider">
+                        <span class="px-3 bg-white text-muted">or</span>
+                    </div>
 
-                <div class="text-center">
-                    <p class="text-muted mb-2">Don't have an account?</p>
-                    <a href="@Url.Action("Registration", "User")" class="btn btn-outline-primary px-4">
-                        <i class="fas fa-user-plus me-2"></i>Create Account
-                    </a>
-                </div>
-            </form>
+                    <div class="text-center">
+                        <p class="text-muted mb-2">Don't have an account?</p>
+                        <a href="@Url.Action("Registration", "User")" class="btn btn-outline-primary px-4">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</form>
