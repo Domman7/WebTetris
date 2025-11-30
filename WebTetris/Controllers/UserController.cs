@@ -44,7 +44,7 @@ namespace WebTetris.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError("", "Неверный логин или пароль");
+            ModelState.AddModelError("", "Wrong login or password");
             return View(loginModel);
         }
 
@@ -66,14 +66,14 @@ namespace WebTetris.Controllers
                 string.IsNullOrWhiteSpace(registrationModel.Login) ||
                 string.IsNullOrWhiteSpace(registrationModel.Password))
             {
-                ModelState.AddModelError("", "Все поля должны быть заполнены");
+                ModelState.AddModelError("", "All fields must be filled");
                 return View(registrationModel);
             }
 
             var existingUser = _bll.GetByLogin(registrationModel.Login);
             if (existingUser != null)
             {
-                ModelState.AddModelError("Login", "Пользователь с таким логином уже существует");
+                ModelState.AddModelError("Login", "User with this username already exists");
                 return View(registrationModel);
             }
 

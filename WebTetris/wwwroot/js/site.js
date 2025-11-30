@@ -348,7 +348,7 @@ class View {
         this.context.textBaseline = 'middle';
         this.context.fillText('GAME OVER', this.width / 2, this.height / 2 - 48);
         this.context.fillText(`Score: ${score}`, this.width / 2, this.height / 2);
-        this.context.fillText(`Press ENTER to Restert`, this.width / 2, this.height / 2 + 48);
+        this.context.fillText(`Press ENTER to Restart`, this.width / 2, this.height / 2 + 48);
     }
 
     clearScreen() {
@@ -406,13 +406,13 @@ class View {
         this.context.fillStyle = '#2f4f4f';
         this.context.font = '20px "Ariel"';
 
-        this.context.fillText(`Очки: ${score}`, this.panelX, this.panelY + this.panelHeight - 24);
-        this.context.fillText(`Линии: ${lines}`, this.panelX, this.panelY + this.panelHeight - 58);
-        this.context.fillText(`Уровень: ${level}`, this.panelX, this.panelY + this.panelHeight - 92);
+        this.context.fillText(`Score: ${score}`, this.panelX, this.panelY + this.panelHeight - 24);
+        this.context.fillText(`Lines: ${lines}`, this.panelX, this.panelY + this.panelHeight - 58);
+        this.context.fillText(`Level: ${level}`, this.panelX, this.panelY + this.panelHeight - 92);
 
         this.context.font = '24px "Ariel"';
 
-        this.context.fillText('Далее:', this.panelX, this.panelY);
+        this.context.fillText('Next:', this.panelX, this.panelY);
 
         for (let y = 0; y < nextPiece.blocks.length; y++) {
             for (let x = 0; x < nextPiece.blocks[y].length; x++) {
