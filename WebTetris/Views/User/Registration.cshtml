@@ -1,0 +1,43 @@
+@model WebTetris.Models.User.RegistrationModel
+Введите логин и пароль
+<form asp-controller="User" asp-action="Registration" asp-antiforgery="true" method="post">
+    <div class="input-group mb-3">
+        <input asp-for="Login" type="text" class="form-control" placeholder="Логин">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input asp-for="Password" type="password" class="form-control" placeholder="Пароль">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input asp-for="Name" type="text" class="form-control" placeholder="ФИО">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+        </div>
+    </div>
+</form>

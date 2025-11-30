@@ -20,7 +20,7 @@ namespace ORMDAL
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-GE5B4B4\\SQLEXPRESS;Initial Catalog=TetrisDB;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-GE5B4B4\\SQLEXPRESS;Initial Catalog=TetrisDB;Integrated Security=True;TrustServerCertificate=true;");
             }
         }
 

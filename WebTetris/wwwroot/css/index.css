@@ -1,0 +1,13 @@
+﻿#root {
+    padding: 3rem;
+    text-align: center;
+}
+
+    #root h1 {
+        color: black;
+    }
+
+    #root canvas {
+        display: block;
+        margin: 0 auto;
+    }
