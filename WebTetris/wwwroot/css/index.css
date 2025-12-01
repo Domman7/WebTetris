@@ -1,13 +1,18 @@
 ﻿#root {
     padding: 3rem;
     text-align: center;
+    background-color: var(--bg-primary);
+    min-height: calc(100vh - 200px);
 }
 
     #root h1 {
-        color: black;
+        color: var(--text-primary);
+        margin-bottom: 2rem;
     }
 
     #root canvas {
         display: block;
         margin: 0 auto;
+        border: 2px solid var(--border-color);
+        background-color: var(--card-bg);
     }

@@ -22,7 +22,6 @@ namespace WebTetris.Controllers
             _gamesBL = gamesBL;
         }
 
-        [Authorize]
         public IActionResult Index(int id, string name)
         {
             TempData["Success"] = "Success";
@@ -47,7 +46,6 @@ namespace WebTetris.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult Index()
         {
             Game newGame = new Game();
@@ -61,7 +59,6 @@ namespace WebTetris.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult SaveGame(int score)
         {
             Game game = new Game()

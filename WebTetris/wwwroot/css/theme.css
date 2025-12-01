@@ -1,0 +1,68 @@
+﻿[data-theme="dark"] .form-label {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .input-group-text {
+    background-color: #2d2d2d !important;
+    color: #cccccc !important;
+    border-color: #444 !important;
+}
+
+[data-theme="dark"] .form-control {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: #444 !important;
+}
+
+    [data-theme="dark"] .form-control::placeholder {
+        color: #888888 !important;
+    }
+
+    [data-theme="dark"] .form-control:focus {
+        background-color: #1a1a1a !important;
+        color: #ffffff !important;
+        border-color: #007bff !important;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+    }
+
+[data-theme="dark"] .btn-outline-secondary {
+    background-color: #2d2d2d !important;
+    color: #cccccc !important;
+    border-color: #444 !important;
+}
+
+    [data-theme="dark"] .btn-outline-secondary:hover {
+        background-color: #3d3d3d !important;
+        color: #ffffff !important;
+        border-color: #555 !important;
+    }
+
+[data-theme="dark"] .text-muted {
+    color: #a0a0a0 !important;
+}
+
+[data-theme="dark"] .card {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+}
+
+[data-theme="dark"] .card-header {
+    background-color: #252525 !important;
+    border-bottom-color: #333 !important;
+}
+
+[data-theme="dark"] .bg-white {
+    background-color: #1e1e1e !important;
+}
+
+[data-theme="dark"] .fas {
+    filter: brightness(1.2);
+}
+
+.form-label,
+.input-group-text,
+.form-control,
+.btn-outline-secondary {
+    transition: all 0.3s ease;
+}

@@ -19,11 +19,11 @@
         this.isPlayingSound = false;
 
         this.soundPriorities = {
-            'gameOver': 5, 
-            'levelUp': 4,     
-            'lineClear': 3,   
-            'gameStart': 2, 
-            'lockPiece': 1     
+            'gameOver': 5,
+            'levelUp': 4,
+            'lineClear': 3,
+            'gameStart': 2,
+            'lockPiece': 1
         };
     }
 
@@ -481,7 +481,8 @@
 }
 
 class View {
-    static colors = {
+    // Цвета для светлой темы
+    static lightColors = {
         '1': 'green',
         '2': 'yellow',
         '3': 'red',
@@ -490,6 +491,22 @@ class View {
         '6': 'brown',
         '7': 'purple'
     };
+
+    // Цвета для темной темы
+    static darkColors = {
+        '1': '#4CAF50',  
+        '2': '#FFC107',  
+        '3': '#F44336',  
+        '4': '#2196F3',  
+        '5': '#00BCD4',  
+        '6': '#795548',  
+        '7': '#9C27B0'   
+    };
+
+    static get colors() {
+        const theme = document.documentElement.getAttribute('data-theme');
+        return theme === 'dark' ? View.darkColors : View.lightColors;
+    }
 
     constructor(element, width, height, rows, columns) {
         this.element = element;
@@ -527,7 +544,7 @@ class View {
     }
 
     renderStartScreen() {
-        this.context.fillStyle = 'black';
+        this.context.fillStyle = this.getTextColor();
         this.context.font = '18px "Ariel"';
         this.context.textAlign = 'center';
         this.context.textBaseline = 'middle';
@@ -535,10 +552,10 @@ class View {
     }
 
     renderPauseScreen() {
-        this.context.fillStyle = 'rgba(255,255,255,0.9)';
+        this.context.fillStyle = 'rgba(0, 0, 0, 0.1)';
         this.context.fillRect(0, 0, this.width, this.height);
 
-        this.context.fillStyle = 'black';
+        this.context.fillStyle = this.getTextColor();
         this.context.font = '18px "Ariel"';
         this.context.textAlign = 'center';
         this.context.textBaseline = 'middle';
@@ -548,7 +565,7 @@ class View {
     renderEndScreen({ score }) {
         this.clearScreen();
 
-        this.context.fillStyle = 'black';
+        this.context.fillStyle = this.getTextColor();
         this.context.font = '18px "Ariel"';
         this.context.textAlign = 'center';
         this.context.textBaseline = 'middle';
@@ -559,6 +576,16 @@ class View {
 
     clearScreen() {
         this.context.clearRect(0, 0, this.width, this.height);
+    }
+
+    getTextColor() {
+        const theme = document.documentElement.getAttribute('data-theme');
+        return theme === 'dark' ? '#e0e0e0' : 'black';
+    }
+
+    getGridColor() {
+        const theme = document.documentElement.getAttribute('data-theme');
+        return theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(207, 207, 207, 0.1)';
     }
 
     renderField({ field }) {
@@ -579,7 +606,7 @@ class View {
                 }
 
                 if (x != 0) {
-                    this.context.strokeStyle = "rgba(207, 207, 207, 0.1)";
+                    this.context.strokeStyle = this.getGridColor();
                     this.context.lineWidth = 1;
 
                     this.context.beginPath();
@@ -589,7 +616,7 @@ class View {
                 }
 
                 if (y != 0) {
-                    this.context.strokeStyle = "rgba(207, 207, 207, 0.1)";
+                    this.context.strokeStyle = this.getGridColor();
                     this.context.lineWidth = 1;
 
                     this.context.beginPath();
@@ -601,7 +628,7 @@ class View {
             }
         }
 
-        this.context.strokeStyle = "black";
+        this.context.strokeStyle = this.getTextColor();
         this.context.lineWidth = this.fieldBorderWidth;
         this.context.strokeRect(this.fieldX / 2, this.fieldY / 2, this.fieldWidth - this.fieldX, this.fieldHeight - this.fieldY);
     }
@@ -609,7 +636,7 @@ class View {
     renderPanel({ level, score, lines, nextPiece }) {
         this.context.textAlign = 'start';
         this.context.textBaseline = 'top';
-        this.context.fillStyle = '#2f4f4f';
+        this.context.fillStyle = this.getTextColor();
         this.context.font = '20px "Ariel"';
 
         this.context.fillText(`Score: ${score}`, this.panelX, this.panelY + this.panelHeight - 24);
@@ -639,7 +666,7 @@ class View {
 
     renderBlock(x, y, width, height, color) {
         this.context.fillStyle = color;
-        this.context.strokeStyle = 'black';
+        this.context.strokeStyle = this.getTextColor();
         this.context.lineWidth = 2;
 
         this.context.fillRect(x + this.context.lineWidth / 2, y + this.context.lineWidth / 2, width - this.context.lineWidth, height - this.context.lineWidth);
@@ -779,3 +806,11 @@ const controller = new Controller(game, view);
 window.game = game;
 window.view = view;
 window.controller = controller;
+
+document.addEventListener('themeChanged', () => {
+    if (controller.isPlaying || game.getState().isGameOver) {
+        view.renderMainScreen(game.getState());
+    } else {
+        view.renderStartScreen();
+    }
+});

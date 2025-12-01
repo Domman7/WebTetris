@@ -22,14 +22,15 @@ namespace WebTetris.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
             if (!ModelState.IsValid)
@@ -50,14 +51,15 @@ namespace WebTetris.Controllers
             return View(loginModel);
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Registration()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Registration(RegistrationModel registrationModel)
         {
             if (!ModelState.IsValid)
@@ -102,6 +104,7 @@ namespace WebTetris.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult Get(int id)
         {
             var user = _bll.GetById(id);
