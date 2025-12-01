@@ -94,7 +94,7 @@ namespace WebTetris.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", $"Произошла ошибка при регистрации: {ex.Message}");
+                ModelState.AddModelError("", $"An error occurred during registration: {ex.Message}");
                 return View(registrationModel);
             }
         }
