@@ -8,6 +8,199 @@
 
     constructor() {
         this.reset();
+        this.initSounds();
+    }
+
+    initSounds() {
+        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        this.lastLevel = 0;
+        this.soundQueue = [];
+        this.isPlayingSound = false;
+
+        this.soundPriorities = {
+            'gameOver': 5, 
+            'levelUp': 4,     
+            'lineClear': 3,   
+            'gameStart': 2, 
+            'lockPiece': 1     
+        };
+    }
+
+    queueSound(soundType, soundFunction) {
+        this.soundQueue.push({
+            type: soundType,
+            priority: this.soundPriorities[soundType] || 0,
+            play: soundFunction
+        });
+
+        this.soundQueue.sort((a, b) => b.priority - a.priority);
+
+        this.processSoundQueue();
+    }
+
+    processSoundQueue() {
+        if (this.isPlayingSound || this.soundQueue.length === 0) {
+            return;
+        }
+
+        const nextSound = this.soundQueue.shift();
+        this.isPlayingSound = true;
+
+        try {
+            nextSound.play();
+
+            setTimeout(() => {
+                this.isPlayingSound = false;
+                this.processSoundQueue();
+            }, 100);
+        } catch (e) {
+            console.log("Sound playback error:", e);
+            this.isPlayingSound = false;
+            this.processSoundQueue();
+        }
+    }
+
+    playSound(frequency, duration, type = 'sine', volume = 0.3, immediate = false) {
+        if (!this.audioContext) return;
+
+        if (immediate) {
+            this.playSoundImmediate(frequency, duration, type, volume);
+            return;
+        }
+
+        const soundFunction = () => {
+            try {
+                const oscillator = this.audioContext.createOscillator();
+                const gainNode = this.audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioContext.destination);
+
+                oscillator.frequency.value = frequency;
+                oscillator.type = type;
+
+                gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + duration);
+
+                oscillator.start();
+                oscillator.stop(this.audioContext.currentTime + duration);
+
+            } catch (e) {
+                console.log("Sound playback error:", e);
+                throw e;
+            }
+        };
+
+        if (immediate) {
+            soundFunction();
+        }
+    }
+
+    playSoundImmediate(frequency, duration, type = 'sine', volume = 0.3) {
+        if (!this.audioContext) return;
+
+        try {
+            const oscillator = this.audioContext.createOscillator();
+            const gainNode = this.audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(this.audioContext.destination);
+
+            oscillator.frequency.value = frequency;
+            oscillator.type = type;
+
+            gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + duration);
+
+            oscillator.start();
+            oscillator.stop(this.audioContext.currentTime + duration);
+
+        } catch (e) {
+            console.log("Sound playback error:", e);
+        }
+    }
+
+    // Звук начала игры
+    playGameStartSound() {
+        this.queueSound('gameStart', () => {
+            const notes = [261.63, 329.63, 392.00, 523.25];
+            let delay = 0;
+
+            notes.forEach((freq, index) => {
+                setTimeout(() => {
+                    this.playSoundImmediate(freq, 0.15, 'sine', 0.25);
+                }, delay);
+                delay += 120;
+            });
+        });
+    }
+
+    // Звук фиксации фигуры
+    playLockSound() {
+        this.queueSound('lockPiece', () => {
+            this.playSoundImmediate(150, 0.08, 'sawtooth', 0.15);
+        });
+    }
+
+    // Звук повышения уровня
+    playLevelUpSound() {
+        this.queueSound('levelUp', () => {
+            const notes = [523.25, 659.25, 783.99];
+            let delay = 0;
+
+            notes.forEach((freq, index) => {
+                setTimeout(() => {
+                    this.playSoundImmediate(freq, 0.15, 'sine', 0.25);
+                }, delay);
+                delay += 150;
+            });
+        });
+    }
+
+    // Звук проигрыша
+    playGameOverSound() {
+        this.queueSound('gameOver', () => {
+            const notes = [523.25, 392.00, 261.63];
+            let delay = 0;
+
+            notes.forEach((freq, index) => {
+                setTimeout(() => {
+                    this.playSoundImmediate(freq, 0.2, 'sine', 0.3);
+                }, delay);
+                delay += 200;
+            });
+        });
+    }
+
+    // Звук удаления линий
+    playLineClearSound(linesCleared) {
+        this.queueSound('lineClear', () => {
+            let frequency, duration;
+
+            switch (linesCleared) {
+                case 1:
+                    frequency = 200;
+                    duration = 0.1;
+                    break;
+                case 2:
+                    frequency = 300;
+                    duration = 0.15;
+                    break;
+                case 3:
+                    frequency = 400;
+                    duration = 0.2;
+                    break;
+                case 4:
+                    frequency = 600;
+                    duration = 0.3;
+                    break;
+                default:
+                    return;
+            }
+
+            this.playSoundImmediate(frequency, duration, 'triangle', 0.3);
+        });
     }
 
     get level() {
@@ -48,6 +241,9 @@
         this.score = 0;
         this.lines = 0;
         this.topOut = false;
+        this.lastLevel = 0;
+        this.soundQueue = []; // Очистка очереди звуков при сбросе
+        this.isPlayingSound = false;
         this.field = this.createField();
         this.currentPiece = this.createPiece();
         this.nextPiece = this.createPiece();
@@ -163,6 +359,7 @@
 
         if (this.hasCollision()) {
             this.topOut = true;
+            this.playGameOverSound();
         }
     }
 
@@ -224,6 +421,8 @@
                 }
             }
         }
+        // Воспроизводим звук фиксации
+        this.playLockSound();
     }
 
     deleteLines() {
@@ -242,14 +441,16 @@
             if (numberOfBlocks === 0) {
                 break;
             }
-            else
-                if (numberOfBlocks < columns) {
-                    continue;
-                }
-                else
-                    if (numberOfBlocks === columns) {
-                        lines.unshift(y);
-                    }
+            else if (numberOfBlocks < columns) {
+                continue;
+            }
+            else if (numberOfBlocks === columns) {
+                lines.unshift(y);
+            }
+        }
+
+        if (lines.length > 0) {
+            this.playLineClearSound(lines.length);
         }
 
         for (let index of lines) {
@@ -264,6 +465,12 @@
         if (combo > 0) {
             this.score += Game.points[combo] * (this.level + 1);
             this.lines += combo;
+
+            const currentLevel = this.level;
+            if (currentLevel > this.lastLevel) {
+                this.playLevelUpSound();
+                this.lastLevel = currentLevel;
+            }
         }
     }
 
@@ -271,7 +478,6 @@
         this.currentPiece = this.nextPiece;
         this.nextPiece = this.createPiece();
     }
-
 }
 
 class View {
@@ -464,6 +670,7 @@ class Controller {
         this.isPlaying = true;
         this.startTimer();
         this.updateView();
+        this.game.playGameStartSound();
     }
 
     pause() {
@@ -571,4 +778,4 @@ const controller = new Controller(game, view);
 
 window.game = game;
 window.view = view;
-window.view = controller;
+window.controller = controller;
