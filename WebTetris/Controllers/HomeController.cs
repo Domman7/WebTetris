@@ -8,6 +8,7 @@ using WebTetris.Models.Home;
 
 namespace WebTetris.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

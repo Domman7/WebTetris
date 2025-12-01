@@ -2,9 +2,10 @@ using Entities;
 using Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebTetris.Models.User;
 using System.Security.Claims;
+using WebTetris.Models.User;
 
 namespace WebTetris.Controllers
 {
@@ -21,6 +22,7 @@ namespace WebTetris.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
@@ -48,6 +50,7 @@ namespace WebTetris.Controllers
             return View(loginModel);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Registration()
         {
