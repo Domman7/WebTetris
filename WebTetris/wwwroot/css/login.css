@@ -1,4 +1,4 @@
-﻿body .login-container {
+﻿.login-container {
     min-height: 80vh;
     display: flex;
     align-items: center;
@@ -7,162 +7,162 @@
     padding: 20px;
 }
 
-body .login-card {
+.login-card {
     border: none;
     border-radius: 15px;
     overflow: hidden;
     max-width: 400px;
     width: 100%;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-    body .login-card .card-header {
+    .login-card .card-header {
         border-bottom: none;
-        border-radius: 15px 15px 0 0 !important;
+        border-radius: 15px 15px 0 0;
     }
 
-    body .login-card .input-group {
-        display: flex !important;
-        align-items: stretch !important;
-        width: 100% !important;
+    .login-card .input-group {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
     }
 
-        body .login-card .input-group > .form-control {
-            border: 2px solid #e9ecef !important;
-            border-left: none !important;
-            border-radius: 0 8px 8px 0 !important;
-            padding: 12px 16px !important;
-            font-size: 14px !important;
-            height: auto !important;
-            flex: 1 1 auto !important;
+        .login-card .input-group > .form-control {
+            border: 2px solid #e9ecef;
+            border-left: none;
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            font-size: 14px;
+            height: auto;
+            flex: 1 1 auto;
         }
 
-            body .login-card .input-group > .form-control:focus {
-                border-color: #007bff !important;
-                box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1) !important;
-                outline: none !important;
+            .login-card .input-group > .form-control:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+                outline: none;
             }
 
-        body .login-card .input-group .input-group-prepend {
-            display: flex !important;
-            margin-right: 0 !important;
+        .login-card .input-group .input-group-prepend {
+            display: flex;
+            margin-right: 0;
         }
 
-        body .login-card .input-group .input-group-text {
-            border: 2px solid #e9ecef !important;
-            border-right: none !important;
-            background: #f8f9fa !important;
-            border-radius: 8px 0 0 8px !important;
-            padding: 12px 16px !important;
-            min-width: 50px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            height: auto !important;
+        .login-card .input-group .input-group-text {
+            border: 2px solid #e9ecef;
+            border-right: none;
+            background: #f8f9fa;
+            border-radius: 8px 0 0 8px;
+            padding: 12px 16px;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
         }
 
-            body .login-card .input-group .input-group-text .fas {
-                font-size: 16px !important;
-                width: 16px !important;
-                color: #007bff !important;
+            .login-card .input-group .input-group-text .fas {
+                font-size: 16px;
+                width: 16px;
+                color: #007bff;
             }
 
-        body .login-card .input-group .input-group-append {
-            display: flex !important;
-            margin-left: 0 !important;
+        .login-card .input-group .input-group-append {
+            display: flex;
+            margin-left: 0;
         }
 
-        body .login-card .input-group .btn-outline-secondary {
-            border: 2px solid #e9ecef !important;
-            border-left: none !important;
-            border-radius: 0 8px 8px 0 !important;
-            background: #f8f9fa !important;
-            color: #6c757d !important;
-            font-size: 13px !important;
-            padding: 12px 16px !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 6px !important;
-            height: auto !important;
+        .login-card .input-group .btn-outline-secondary {
+            border: 2px solid #e9ecef;
+            border-left: none;
+            border-radius: 0 8px 8px 0;
+            background: #f8f9fa;
+            color: #6c757d;
+            font-size: 13px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: auto;
         }
 
-            body .login-card .input-group .btn-outline-secondary:hover {
-                background: #e9ecef !important;
-                border-color: #ced4da !important;
-                color: #495057 !important;
+            .login-card .input-group .btn-outline-secondary:hover {
+                background: #e9ecef;
+                border-color: #ced4da;
+                color: #495057;
             }
 
-    body .login-card .btn-primary {
-        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 12px 24px !important;
-        font-size: 14px !important;
-        font-weight: 600 !important;
-        width: 100% !important;
+    .login-card .btn-primary {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        width: 100%;
     }
 
-        body .login-card .btn-primary:hover {
+        .login-card .btn-primary:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3) !important;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
         }
 
-    body .login-card .btn-outline-primary {
-        border-radius: 8px !important;
-        padding: 10px 20px !important;
-        font-size: 14px !important;
-        border: 2px solid #007bff !important;
-        color: #007bff !important;
-        background: transparent !important;
+    .login-card .btn-outline-primary {
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 14px;
+        border: 2px solid #007bff;
+        color: #007bff;
+        background: transparent;
     }
 
-        body .login-card .btn-outline-primary:hover {
+        .login-card .btn-outline-primary:hover {
             transform: translateY(-1px);
-            background: #007bff !important;
-            color: white !important;
+            background: #007bff;
+            color: white;
         }
 
-    body .login-card .form-label {
+    .login-card .form-label {
         font-size: 14px;
         margin-bottom: 8px;
         font-weight: 600;
         color: #333;
     }
 
-    body .login-card .text-danger {
+    .login-card .text-danger {
         font-size: 12px;
         margin-top: 4px;
         display: block;
-        color: #dc3545 !important;
+        color: #dc3545;
     }
 
-    body .login-card .card-body {
-        padding: 24px !important;
+    .login-card .card-body {
+        padding: 24px;
     }
 
-    body .login-card .divider {
-        border-top: 1px dashed #dee2e6 !important;
-        margin: 20px 0 !important;
+    .login-card .divider {
+        border-top: 1px dashed #dee2e6;
+        margin: 20px 0;
     }
 
-    body .login-card .text-muted {
-        color: #6c757d !important;
-        font-size: 14px !important;
+    .login-card .text-muted {
+        color: #6c757d;
+        font-size: 14px;
     }
 
 .password-toggle-text {
-    font-size: 13px !important;
+    font-size: 13px;
 }
 
-body .login-card .form-control.is-valid,
-body .login-card .was-validated .form-control:valid {
-    border-color: #e9ecef !important;
-    background-image: none !important;
-    box-shadow: none !important;
+.login-card .form-control.is-valid,
+.login-card .was-validated .form-control:valid {
+    border-color: #e9ecef;
+    background-image: none;
+    box-shadow: none;
 }
 
-    body .login-card .form-control.is-valid:focus,
-    body .login-card .was-validated .form-control:valid:focus {
-        border-color: #007bff !important;
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1) !important;
+    .login-card .form-control.is-valid:focus,
+    .login-card .was-validated .form-control:valid:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
     }
