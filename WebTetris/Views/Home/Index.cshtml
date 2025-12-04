@@ -6,8 +6,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <div id="root">
     <h1>
         <span>Tetris</span>
     </h1>
 </div>
+
+<div class="volume-slider-simple">
+    <input type="range" id="musicVolume" min="0" max="100" value="30" class="volume-slider">
+</div>
+
+<audio id="backgroundMusic" loop style="display: none;">
+    <source src="~/audio/tetris.mp3" type="audio/mpeg">
+</audio>
